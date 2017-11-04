@@ -8,7 +8,7 @@ public class StatusManager : MonoBehaviour {
     public float maxInsanity;
     public float maxHunger;
 
-    [HideInInspector]
+    //[HideInInspector]
     public float currentHealth;
     public float currentInsanity;
     public float currentHunger;
@@ -24,6 +24,8 @@ public class StatusManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		
-	}
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+        currentInsanity = Mathf.Clamp(currentInsanity, 0, maxInsanity);
+        currentHunger = Mathf.Clamp(currentHunger, 0, maxHunger);
+    }
 }
