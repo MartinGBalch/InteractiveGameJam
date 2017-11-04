@@ -1,0 +1,41 @@
+
+<Player Package>
+
+2 Options:
+	~Interactables:
+		-No Combat
+		-Interact with animals and objects
+		-No Interactions with bad enemies
+		~Crafting
+	
+
+<AI>
+-GOOD creatures, wanders
+-BAD creatures, hunt down the player
+- Handling enemys:
+	~Reducing Sanity is the only way to make them go away, Slow moving AI
+		-Slow moving
+		-Disappear on Insanity Level
+		-Power level based on current Insanity 
+	
+
+<Resource Management>
+- kill cute animals for food, Decrese SANITY
+- Eat raw meat, Decrease SANITY - Raise HUNGER -Decrease HEALTH
+- Eat cooked meat, Increase SANITY, Decrease HUNGER
+- Find Herbs for health, Increase HEALTH
+- Find wrong herbs go on drug trip, MAJOR Decrease SANITY <JUICE>
+
+
+<Global Effects>
+- "Beacon" that you stand around to Increase SANITY
+- MAYBE Day and Night, night time wandering Decrease SANITY
+
+
+
+
+
+<Art>
+- Sprite animation for Good, Transition, Corrupted
+- Screen Overlay for Different States
+
