@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveWish;
     private Rigidbody rbody;
 
-    public float interactionRadius = 2;
+    
 
     [Header("Movement Attributes")]
     public float groundFriction = 15;
@@ -48,19 +48,7 @@ public class PlayerController : MonoBehaviour
         return Accelerate(wishDir, prevVelocity, groundAcceleration, maxGroundVelocity);
     }
 
-    private void AttemptInteraction()
-    {
-        var hits = Physics.OverlapSphere(transform.position, interactionRadius);
-
-        foreach(var hit in hits)
-        {
-            var interactionTarget = hit.gameObject.GetComponent<IInteractable>();
-            if(interactionTarget != null)
-            {
-                interactionTarget.Interact(this);
-            }
-        }
-    }
+  
 
     // Unity Event Loop
 
@@ -71,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        bool interactWish = Input.GetButtonDown("Interact");
+       
 
         moveWish.x = Input.GetAxisRaw("Horizontal");
         moveWish.y = 0.0f;
@@ -79,10 +67,7 @@ public class PlayerController : MonoBehaviour
 
         targetVelocity = MoveGround(moveWish, rbody.velocity);
 
-        if(interactWish)
-        {
-            AttemptInteraction();
-        }
+       
     }
 
     void FixedUpdate()
@@ -90,9 +75,5 @@ public class PlayerController : MonoBehaviour
         rbody.velocity = targetVelocity;
     }
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, interactionRadius);
-    }
+  
 }

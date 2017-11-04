@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class CritterWander : MonoBehaviour {
+public class CritterWander : MonoBehaviour, IInteractable {
 
 
     public float speed;
@@ -17,6 +17,25 @@ public class CritterWander : MonoBehaviour {
     SpriteRenderer sprite;
     public GameObject Predator;
     public int state;
+    public float InsanityDrainOnKill;
+    public CritterSpawner spawn;
+    public void Interact(Object caller)
+    {
+        if(CanInteract(caller))
+        {
+            var t = (PlayerInteracter)caller;
+            t.inventory.manager.currentInsanity -= InsanityDrainOnKill;
+            t.inventory.rawMeat++;
+            spawn.currentCrittersInGame--;
+            gameObject.SetActive(false);
+        }
+    }
+
+    public bool CanInteract(Object caller)
+    {
+        return true;
+    }
+
     public void Wander()
     {
         Predator = null;
@@ -35,7 +54,7 @@ public class CritterWander : MonoBehaviour {
             Vector3 target = Predator.transform.position + Predator.GetComponent<Rigidbody>().velocity;
             Vector3 dir = -(target - transform.position).normalized;
             Vector3 desiredVelocity = dir * speed;
-            Destination = desiredVelocity - agent.velocity;
+            Destination = desiredVelocity;
         }
       
     }

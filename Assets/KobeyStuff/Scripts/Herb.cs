@@ -17,7 +17,7 @@ public class Herb : MonoBehaviour, IInteractable {
     {
         manager.currentHealth += healAmount;
         manager.currentHealth = Mathf.Clamp(manager.currentHealth, 0, manager.maxHealth);
-
+        Destroy(gameObject);
     }
     public bool CanInteract(Object caller)
     {

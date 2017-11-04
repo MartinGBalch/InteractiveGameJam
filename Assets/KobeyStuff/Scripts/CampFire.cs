@@ -5,6 +5,8 @@ using UnityEngine;
 public class CampFire : MonoBehaviour , IInteractable{
     StatusManager manager;
     public bool Lit;
+    public float interactTimer;
+    private float currentTimer;
     // Use this for initialization
     void Start () {
         Lit = false;
@@ -16,7 +18,18 @@ public class CampFire : MonoBehaviour , IInteractable{
     {
         if(CanInteract(caller))
         {
-            // Cook Food
+            if(currentTimer < 0)
+            {
+                var t = (PlayerInteracter)caller;
+                if(t.inventory.rawMeat > 0)
+                {
+                    t.inventory.cookedMeat++;
+                    t.inventory.rawMeat--;
+                }
+               
+                currentTimer = interactTimer;
+            }
+           
         }
         else
         {
@@ -29,7 +42,12 @@ public class CampFire : MonoBehaviour , IInteractable{
     }
 
     // Update is called once per frame
-    void Update () {
-		
+    void Update ()
+    {
+        if(Lit)
+        {
+            currentTimer -= Time.deltaTime;
+        }
+        
 	}
 }
