@@ -6,9 +6,11 @@ public class Herb : MonoBehaviour, IInteractable {
 
     StatusManager manager;
     public float healAmount;
+    public HerbSpawn spawn;
 	// Use this for initialization
 	void Start ()
     {
+       
         manager = FindObjectOfType<StatusManager>();	
 	}
 
@@ -17,7 +19,8 @@ public class Herb : MonoBehaviour, IInteractable {
     {
         manager.currentHealth += healAmount;
         manager.currentHealth = Mathf.Clamp(manager.currentHealth, 0, manager.maxHealth);
-        Destroy(gameObject);
+        spawn.currentHerbsInGame--;
+        gameObject.SetActive(false);
     }
     public bool CanInteract(Object caller)
     {

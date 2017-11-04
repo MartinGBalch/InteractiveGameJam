@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Backpack : MonoBehaviour {
 
@@ -13,6 +14,10 @@ public class Backpack : MonoBehaviour {
     public float cookedHungerRefill;
     public
     StatusManager manager;
+
+    public Text rawText;
+    public Text cookedText;
+
 	// Use this for initialization
 	void Start ()
     {
@@ -24,7 +29,9 @@ public class Backpack : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-		if(Input.GetMouseButtonDown(0) && rawMeat > 0)
+        rawText.text = "X" + rawMeat.ToString();
+        cookedText.text = "X" + cookedMeat.ToString();
+        if (Input.GetMouseButtonDown(0) && rawMeat > 0)
         {
             rawMeat--;
             manager.currentHunger += rawHungerRefil;

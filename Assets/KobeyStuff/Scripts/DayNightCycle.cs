@@ -5,13 +5,17 @@ using UnityEngine;
 public class DayNightCycle : MonoBehaviour {
 
     public Material[] skyBoxes;
-
+    StatusManager manager;
     public float stateTime;
     private float currentTime;
     public int timeOfDay;
+    public float intensity;
+    public float InsanityDrain;
 	// Use this for initialization
 	void Start ()
     {
+        manager = FindObjectOfType<StatusManager>();
+        intensity = 1;
         timeOfDay = 0;
         currentTime = stateTime;
 	}
@@ -28,8 +32,13 @@ public class DayNightCycle : MonoBehaviour {
         {
             if(i == timeOfDay)
             {
+                if(i == 0)
+                {
+                    intensity = 1;
+                }
                 RenderSettings.skybox = skyBoxes[timeOfDay];
-                RenderSettings.ambientIntensity = 0;
+                RenderSettings.ambientIntensity = intensity;
+                //RenderSettings.ambientIntensity = 0;
             }
         }
         currentTime = stateTime;
@@ -41,7 +50,12 @@ public class DayNightCycle : MonoBehaviour {
         currentTime -= Time.deltaTime;
         if(currentTime < 0)
         {
+            intensity -= .2f;
             ChangeSkyBox();
+        }
+        if(timeOfDay > 3)
+        {
+            manager.currentInsanity -= InsanityDrain * Time.deltaTime;
         }
 	}
 }

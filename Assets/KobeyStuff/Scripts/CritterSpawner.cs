@@ -11,7 +11,7 @@ public class CritterSpawner : MonoBehaviour {
     public GameObject critter;
     public float SpawnInterval;
     private float currentInterval;
-
+    public Transform[] spawnPoints;
 
     // Use this for initialization
     void Start () {
@@ -35,7 +35,8 @@ public class CritterSpawner : MonoBehaviour {
             if (!critterPool[i].activeInHierarchy)
             {
                 critterPool[i].SetActive(true);
-                critterPool[i].transform.position = transform.position;
+                int idx = Random.Range(0, spawnPoints.Length - 1);
+                critterPool[i].transform.position = spawnPoints[idx].position;
                 currentCrittersInGame++;
                 break;
             }

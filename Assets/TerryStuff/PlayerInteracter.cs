@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerInteracter : MonoBehaviour {
     public float interactionRadius = 2;
+    public Canvas displayText;
     public Backpack inventory;
+
     // Use this for initialization
     void Start ()
     {
@@ -19,6 +21,7 @@ public class PlayerInteracter : MonoBehaviour {
             var interactionTarget = hit.gameObject.GetComponent<IInteractable>();
             if (interactionTarget != null)
             {
+               // displayText.GetComponent<RectTransform>().SetParent(null);
                 interactionTarget.Interact(this);
             }
         }
@@ -31,6 +34,16 @@ public class PlayerInteracter : MonoBehaviour {
         if (interactWish)
         {
             AttemptInteraction();
+        }
+        var hits = Physics.OverlapSphere(transform.position, interactionRadius);
+        foreach (var hit in hits)
+        {
+            var interactionTarget = hit.gameObject.GetComponent<IInteractable>();
+            if (interactionTarget != null)
+            {
+               displayText.GetComponent<RectTransform>().SetParent(hit.transform, false);
+                //interactionTarget.Interact(this);
+            }
         }
     }
 
