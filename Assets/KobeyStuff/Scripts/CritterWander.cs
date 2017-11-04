@@ -81,7 +81,7 @@ public class CritterWander : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        CheckForPredator();
+        //CheckForPredator();
         if (Predator != null)
         {
             state = 1;
