@@ -18,6 +18,7 @@ public class MenuSwitchers : MonoBehaviour
     public Image mainMenu;
     public Image characterSelect;
     public Image howTo;
+    public Image credits;
 
     public string scene;
 
@@ -28,6 +29,7 @@ public class MenuSwitchers : MonoBehaviour
         mainMenu.gameObject.SetActive(false);
         characterSelect.gameObject.SetActive(false);
         howTo.gameObject.SetActive(false);
+        credits.gameObject.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -52,6 +54,12 @@ public class MenuSwitchers : MonoBehaviour
         mainMenu.gameObject.SetActive(false);
     }
 
+    public void creditPress()
+    {
+        credits.gameObject.SetActive(true);
+        mainMenu.gameObject.SetActive(false);
+    }
+
     public void exitPress()
     {
         Application.Quit();
@@ -67,5 +75,6 @@ public class MenuSwitchers : MonoBehaviour
         mainMenu.gameObject.SetActive(true);
         characterSelect.gameObject.SetActive(false);
         howTo.gameObject.SetActive(false);
+        credits.gameObject.SetActive(false);
     }
 }

@@ -6,9 +6,12 @@ using UnityEngine.UI;
 public class FlashingButton : MonoBehaviour
 {
     public Text enter;
+    public RawImage stroke;
     bool On = false;
     public Color Blink;
     public Color noBlink;
+    public Color Blink2;
+    public Color noBlink2;
     public float startTime;
     private float currentTime;
 
@@ -20,11 +23,13 @@ public class FlashingButton : MonoBehaviour
         if(On)
         {
             enter.color = Blink;
+            stroke.color = Blink2;
             On = false;
         }
         else
         {
             enter.color = noBlink;
+            stroke.color = noBlink2;
             On = true;
         }
     }
