@@ -15,6 +15,7 @@ public class CritterWander : MonoBehaviour, IInteractable {
     NavMeshAgent agent;
     public Vector2 Destination;
     SpriteRenderer sprite;
+    
     public GameObject Predator;
     public int state;
     public float InsanityDrainOnKill;
@@ -23,11 +24,17 @@ public class CritterWander : MonoBehaviour, IInteractable {
     {
         if(CanInteract(caller))
         {
+            
             var t = (PlayerInteracter)caller;
-            t.inventory.manager.currentInsanity -= InsanityDrainOnKill;
-            t.inventory.rawMeat++;
-            spawn.currentCrittersInGame--;
-            gameObject.SetActive(false);
+            if(!t.inventory.isFull())
+            {
+                t.inventory.manager.currentInsanity -= InsanityDrainOnKill;
+                t.inventory.PlaceItem(0, 1);
+                spawn.currentCrittersInGame--;
+                t.inventory.UpdateImages();
+                gameObject.SetActive(false);
+            }
+           
         }
     }
 

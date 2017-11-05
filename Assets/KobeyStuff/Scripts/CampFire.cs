@@ -9,32 +9,46 @@ public class CampFire : MonoBehaviour , IInteractable{
     private float currentTimer;
     // Use this for initialization
     void Start () {
-        Lit = false;
+        Lit = true;
         manager = FindObjectOfType<StatusManager>();
     }
 
 
     public void Interact(Object caller)
     {
-        if(CanInteract(caller))
-        {
+        
             if(currentTimer < 0)
             {
                 var t = (PlayerInteracter)caller;
-                if(t.inventory.rawMeat > 0)
-                {
-                    t.inventory.cookedMeat++;
-                    t.inventory.rawMeat--;
-                }
+                
+                    int idx = t.inventory.inventorySearch(0);
+                    if(idx != -1)
+                    {
+                        if(t.inventory.PlaceItem(1, 1))
+                        {
+                            t.inventory.items[idx].InventoryCount--;
+                            t.inventory.isEmpty(idx);
+                            t.inventory.UpdateImages();
+                        }
+                        else
+                        {
+                            Debug.Log("No Space Left");
+                        }
+                        
+
+                    }
+                    else
+                    {
+                        Debug.Log("You need Raw Meat");
+                    }
+                    //t.inventory.cookedMeat++;
+                   // t.inventory.rawMeat--;
+                
                
                 currentTimer = interactTimer;
             }
            
-        }
-        else
-        {
-            Lit = true;
-        }
+      
     }
     public bool CanInteract(Object caller)
     {

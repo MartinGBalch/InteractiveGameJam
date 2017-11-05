@@ -14,12 +14,12 @@ public class CritterSpawner : MonoBehaviour {
     public Transform[] spawnPoints;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         critter.GetComponent<CritterWander>().spawn = this;
         critterPool = new List<GameObject>();
         currentInterval = SpawnInterval;
         currentCrittersInGame = 0;
-        for(int i =0; i <maxCrittersInGame; i++)
+        for(int i =0; i < maxCrittersInGame; i++)
         {
             var babe = Instantiate(critter);
             babe.SetActive(false);

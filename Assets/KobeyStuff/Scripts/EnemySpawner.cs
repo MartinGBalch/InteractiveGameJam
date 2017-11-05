@@ -63,14 +63,20 @@ public class EnemySpawner : MonoBehaviour {
     {
         if (manager.currentInsanity < 50)
         {
+            
             currentInterval -= Time.deltaTime;
             if (currentInterval < 0)
             {
                 SpawnEnemy();
             }
         }
+        else if(manager.currentInsanity < 25)
+        {
+            
+        }
         else
         {
+            
             DeSpawnEnemy();
         }
        

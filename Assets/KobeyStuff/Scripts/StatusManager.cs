@@ -30,7 +30,7 @@ public class StatusManager : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        Props = FindObjectsOfType<SpriteHandler>();
+       
         currentHealth = maxHealth;
         currentHunger = maxHunger;
         currentInsanity = maxInsanity;
@@ -54,19 +54,8 @@ public class StatusManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if(currentInsanity < 30)
-        {
-            UpdateSprites(2);
-        }
-        else if(currentInsanity < 65)
-        {
-           
-            UpdateSprites(1);
-        }
-        else
-        {
-            UpdateSprites(0);
-        }        
+       // Props = FindObjectsOfType<SpriteHandler>();
+      
 
 
         currentHunger -= hungerDrain * Time.deltaTime;

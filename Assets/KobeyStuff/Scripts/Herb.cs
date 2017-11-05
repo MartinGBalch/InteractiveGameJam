@@ -5,7 +5,7 @@ using UnityEngine;
 public class Herb : MonoBehaviour, IInteractable {
 
     StatusManager manager;
-    public float healAmount;
+    
     public HerbSpawn spawn;
 	// Use this for initialization
 	void Start ()
@@ -17,10 +17,20 @@ public class Herb : MonoBehaviour, IInteractable {
 
     public void Interact(Object caller)
     {
-        manager.currentHealth += healAmount;
-        manager.currentHealth = Mathf.Clamp(manager.currentHealth, 0, manager.maxHealth);
-        spawn.currentHerbsInGame--;
-        gameObject.SetActive(false);
+        var t = (PlayerInteracter)caller;
+        if (!t.inventory.isFull())
+        {
+            
+            t.inventory.PlaceItem(2, 1);
+            spawn.currentHerbsInGame--;
+            t.inventory.UpdateImages();
+            gameObject.SetActive(false);
+        }
+
+
+        // manager.currentHealth += healAmount;
+        //manager.currentHealth = Mathf.Clamp(manager.currentHealth, 0, manager.maxHealth);
+       
     }
     public bool CanInteract(Object caller)
     {
