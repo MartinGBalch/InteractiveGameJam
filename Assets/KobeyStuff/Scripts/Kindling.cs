@@ -13,12 +13,23 @@ public class Kindling : MonoBehaviour, IInteractable {
     public void Interact(Object caller)
     {
         var t = (PlayerInteracter)caller;
-        if(!t.inventory.isFull())
+        int idx = t.inventory.FindmatchingItemSlot(3);
+        if (idx == -1)
+        {
+            if (!t.inventory.isFull())
+            {
+                t.inventory.PlaceItem(3, 1);
+                t.inventory.UpdateImages();
+                gameObject.SetActive(false);
+            }
+        }
+        else
         {
             t.inventory.PlaceItem(3, 1);
             t.inventory.UpdateImages();
             gameObject.SetActive(false);
         }
+       
     }
 
     public bool CanInteract(Object caller)

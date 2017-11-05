@@ -15,6 +15,7 @@ public class DayNightCycle : MonoBehaviour {
     public float InsanityDrain;
     public int Day;
     public Text dayText;
+    public int winDay;
 	// Use this for initialization
 	void Start ()
     {
@@ -27,6 +28,17 @@ public class DayNightCycle : MonoBehaviour {
         currentTime = stateTime;
 	}
 	
+    public bool didYouWin()
+    {
+        if (Day == winDay + 1 && timeOfDay == 0)
+        {
+            Debug.Log("Dale is a sick boy");
+            return true;
+        }
+        else
+            return false;
+    }
+
     void ChangeSkyBox()
     {
         timeOfDay++;
@@ -58,6 +70,8 @@ public class DayNightCycle : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+
+        didYouWin();
         currentInensity = Mathf.Lerp(currentInensity, Desiredintensity, Desiredintensity * Time.deltaTime);
         RenderSettings.ambientIntensity = currentInensity;
         currentTime -= Time.deltaTime;

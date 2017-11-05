@@ -18,7 +18,19 @@ public class Herb : MonoBehaviour, IInteractable {
     public void Interact(Object caller)
     {
         var t = (PlayerInteracter)caller;
-        if (!t.inventory.isFull())
+        int idx = t.inventory.FindmatchingItemSlot(2);
+        if (idx == -1)
+        {
+            if (!t.inventory.isFull())
+            {
+                t.Heal.Play();
+                t.inventory.PlaceItem(2, 1);
+                spawn.currentHerbsInGame--;
+                t.inventory.UpdateImages();
+                gameObject.SetActive(false);
+            }
+        }
+        else
         {
             t.Heal.Play();
             t.inventory.PlaceItem(2, 1);
@@ -26,6 +38,7 @@ public class Herb : MonoBehaviour, IInteractable {
             t.inventory.UpdateImages();
             gameObject.SetActive(false);
         }
+           
 
 
         // manager.currentHealth += healAmount;

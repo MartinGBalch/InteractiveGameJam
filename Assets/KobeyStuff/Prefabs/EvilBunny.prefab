@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212644124942417846}
   - component: {fileID: 195131990369788658}
   - component: {fileID: 114541374119531854}
+  - component: {fileID: 114128913710657690}
   m_Layer: 0
   m_Name: EvilBunny
   m_TagString: Untagged
@@ -42,6 +43,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114128913710657690
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1407940981621308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5bedeb7d8f4df04f8797f7e5002366c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mySprites:
+  - {fileID: 21300000, guid: 321972120ba70194f83bc394492fba95, type: 3}
+  - {fileID: 21300000, guid: 8c999a7567a14354396e45d1c8fc2d29, type: 3}
+  - {fileID: 21300000, guid: d0fe8be8cea1f954683d071425f66a46, type: 3}
+  - {fileID: 21300000, guid: fb3f6eef4f4a63243b28f18e04fb188f, type: 3}
+  - {fileID: 21300000, guid: 8c999a7567a14354396e45d1c8fc2d29, type: 3}
+  startTimer: 0
 --- !u!114 &114541374119531854
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,7 +132,7 @@ SpriteRenderer:
   m_SortingLayerID: 1813293861
   m_SortingLayer: 2
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: a3a041b6112c47f48a2f618e130a9228, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 321972120ba70194f83bc394492fba95, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

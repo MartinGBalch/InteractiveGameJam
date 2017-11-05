@@ -39,9 +39,17 @@ public class StatusManager : MonoBehaviour {
         currentInsanity = maxInsanity;
 	}
 
-   void Lose()
+   public bool didYouLose()
     {
-        Debug.Log("YOU LOSE FEGGET");
+        if (currentHealth <= 0 || currentInsanity <= 0 || currentHunger <= 0)
+        {
+            hunger.fillAmount = currentHunger / maxHunger;
+            health.fillAmount = currentHealth / maxHealth;
+            instanity.fillAmount = currentInsanity / maxInsanity;
+            return true;
+        }
+        else
+            return false;
     }
 
     void UpdateSprites(int idx)
@@ -82,13 +90,7 @@ public class StatusManager : MonoBehaviour {
             timer = 0.5f;
         }
 
-        if (currentHealth <= 0 || currentInsanity <= 0 || currentHunger <= 0)
-        {
-            hunger.fillAmount = currentHunger / maxHunger;
-            health.fillAmount = currentHealth / maxHealth;
-            instanity.fillAmount = currentInsanity / maxInsanity;
-            Lose();
-        }
+        
 
     }
 }
