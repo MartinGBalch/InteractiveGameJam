@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class MenuSwitchers : MonoBehaviour
 {
     public Button play;
-    public Button how;
+   
     public Button exit;
     public Button credit;
     public Button enter;
@@ -17,7 +17,7 @@ public class MenuSwitchers : MonoBehaviour
     public RawImage titleScreen;
     public Image mainMenu;
     public Image characterSelect;
-    public Image howTo;
+    
     public Image credits;
 
     public string scene;
@@ -28,7 +28,7 @@ public class MenuSwitchers : MonoBehaviour
         titleScreen.gameObject.SetActive(true);
         mainMenu.gameObject.SetActive(false);
         characterSelect.gameObject.SetActive(false);
-        howTo.gameObject.SetActive(false);
+       
         credits.gameObject.SetActive(false);
     }
 	
@@ -48,11 +48,7 @@ public class MenuSwitchers : MonoBehaviour
         mainMenu.gameObject.SetActive(false);
     }
 
-    public void howPress()
-    {
-        howTo.gameObject.SetActive(true);
-        mainMenu.gameObject.SetActive(false);
-    }
+   
 
     public void creditPress()
     {
@@ -74,7 +70,7 @@ public class MenuSwitchers : MonoBehaviour
     {
         mainMenu.gameObject.SetActive(true);
         characterSelect.gameObject.SetActive(false);
-        howTo.gameObject.SetActive(false);
+       
         credits.gameObject.SetActive(false);
     }
 }
