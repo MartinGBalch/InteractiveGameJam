@@ -20,6 +20,7 @@ public class EnemySpawner : MonoBehaviour {
         for(int i =0; i < maxEnemiesInGame; i++)
         {
             var baby = Instantiate(Enemy);
+            baby.transform.position = transform.position;
             baby.SetActive(false);
             enemyPool.Add(baby);
         }

@@ -40,7 +40,7 @@ public class InsaneEnemies : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if(manager.currentInsanity > 0)
+        if(manager.currentInsanity >= 0)
         {
             currentSpeed = (manager.maxInsanity / manager.currentInsanity);
         }

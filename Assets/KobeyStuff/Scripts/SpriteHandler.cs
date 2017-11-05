@@ -34,6 +34,11 @@ public class SpriteHandler : MonoBehaviour {
             {
                 UpdateSprite(2);
             }
+            else if (manager.currentHunger < 65)
+            {
+
+                UpdateSprite(3);
+            }
             else if (manager.currentInsanity < 65)
             {
 
@@ -42,11 +47,6 @@ public class SpriteHandler : MonoBehaviour {
             else if (manager.currentHunger < 30)
             {
                 UpdateSprite(4);
-            }
-            else if (manager.currentHunger < 65)
-            {
-
-                UpdateSprite(3);
             }
             else
             {

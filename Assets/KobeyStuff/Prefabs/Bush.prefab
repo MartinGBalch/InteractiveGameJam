@@ -54,8 +54,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mySprites:
   - {fileID: 21300000, guid: a4457ba555660cb47a3610130c2fd6ad, type: 3}
-  - {fileID: 21300000, guid: a4457ba555660cb47a3610130c2fd6ad, type: 3}
-  - {fileID: 21300000, guid: a4457ba555660cb47a3610130c2fd6ad, type: 3}
+  - {fileID: 21300000, guid: 784398e14eacb6d4b84cf2a25b9cd4e4, type: 3}
+  - {fileID: 21300000, guid: 153534407ebb24d449b92512c99128b6, type: 3}
   - {fileID: 21300000, guid: ca020ec3184f2a3478ad36452cec4849, type: 3}
   - {fileID: 21300000, guid: cf5538c53e5320948bcb42812a86a272, type: 3}
   startTimer: 0
