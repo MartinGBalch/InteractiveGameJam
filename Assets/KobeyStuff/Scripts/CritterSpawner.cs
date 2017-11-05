@@ -22,10 +22,11 @@ public class CritterSpawner : MonoBehaviour {
         for(int i =0; i < maxCrittersInGame; i++)
         {
             var babe = Instantiate(critter);
+            babe.transform.position = transform.position;
             babe.SetActive(false);
             critterPool.Add(babe);
         }
-		
+        int x = 2;
 	}
 	
     void SpawnCritter()

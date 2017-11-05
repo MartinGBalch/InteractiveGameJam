@@ -54,6 +54,10 @@ public class Backpack : MonoBehaviour {
     public Button button3;
     public Button button4;
 
+    public ParticleSystem part;
+    public ParticleSystem Fire;
+    public ParticleSystem raw;
+    public ParticleSystem cooked;
     //public int[] InventoryCount; // 0 is empty
     //public int[] InventoryItem; //  0 - RawMeat, 1 - CookedMeat, 2 - Herb, 3 - sticks 
 
@@ -92,36 +96,50 @@ public class Backpack : MonoBehaviour {
 
     public void useItem(int idx)
     {
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            items[idx].ClearSlot();
+            UpdateImages();
+        }
         int itemType = items[idx].InventoryItem;
         if(itemType != -1)
         {
+            
             switch (itemType)
             {
                 case 0:
+                    raw.Play();
                     items[idx].InventoryCount--;
                     isEmpty(idx);
                     manager.currentHunger += rawHungerRefil;
                     manager.currentHealth -= rawHealthDrain;
                     manager.currentInsanity -= rawHealthDrain;
+                    UpdateImages();
                     break;
                 case 1:
+                    cooked.Play();
                     items[idx].InventoryCount--;
                     isEmpty(idx);
                     manager.currentHunger += cookedHungerRefill;
                     manager.currentInsanity += cookedInsanityRefill;
+                    UpdateImages();
                     break;
                 case 2:
+                    part.Play();
                     items[idx].InventoryCount--;
                     isEmpty(idx);
                     manager.currentHealth += healAmount;
                     manager.currentHealth = Mathf.Clamp(manager.currentHealth, 0, manager.maxHealth);
+                    UpdateImages();
                     break;
                 case 3:
                     if(items[idx].InventoryCount == items[idx].MaxCount)
                     {
+                        Fire.Play();
                         Vector3 spawnPos = transform.position + (transform.forward * 2);
                         Instantiate(campFire, spawnPos, campFire.transform.rotation);
                         items[idx].ClearSlot();
+                        UpdateImages();
                     }
                     //spawn Fire
                     break;

@@ -15,6 +15,8 @@ public class TrippyHerb : MonoBehaviour, IInteractable
 
     public void Interact(Object caller)
     {
+        var t = (PlayerInteracter)caller;
+        t.Drug.Play();
         manager.currentInsanity -= InsanityDrain;
         spawn.currentHerbsInGame--;
         gameObject.SetActive(false);

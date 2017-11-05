@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DayNightCycle : MonoBehaviour {
 
@@ -9,13 +10,19 @@ public class DayNightCycle : MonoBehaviour {
     public float stateTime;
     private float currentTime;
     public int timeOfDay;
-    public float intensity;
+    public float Desiredintensity;
+    public float currentInensity;
     public float InsanityDrain;
+    public int Day;
+    public Text dayText;
 	// Use this for initialization
 	void Start ()
     {
         manager = FindObjectOfType<StatusManager>();
-        intensity = 1;
+        Day = 1;
+        dayText.text = "Day " + Day.ToString();
+        Desiredintensity = 1;
+        currentInensity = 1;
         timeOfDay = 0;
         currentTime = stateTime;
 	}
@@ -34,10 +41,14 @@ public class DayNightCycle : MonoBehaviour {
             {
                 if(i == 0)
                 {
-                    intensity = 1;
+                    Desiredintensity = 1;
                 }
                 RenderSettings.skybox = skyBoxes[timeOfDay];
-                RenderSettings.ambientIntensity = intensity;
+                if(i == skyBoxes.Length -1)
+                {
+                    Day++;
+                    dayText.text = "Day " + Day.ToString();
+                }
                 //RenderSettings.ambientIntensity = 0;
             }
         }
@@ -47,10 +58,12 @@ public class DayNightCycle : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        currentInensity = Mathf.Lerp(currentInensity, Desiredintensity, Desiredintensity * Time.deltaTime);
+        RenderSettings.ambientIntensity = currentInensity;
         currentTime -= Time.deltaTime;
         if(currentTime < 0)
         {
-            intensity -= .2f;
+            Desiredintensity -= .2f;
             ChangeSkyBox();
         }
         if(timeOfDay > 3)

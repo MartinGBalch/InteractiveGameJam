@@ -6,10 +6,13 @@ public class PlayerInteracter : MonoBehaviour {
     public float interactionRadius = 2;
     public Canvas displayText;
     public Backpack inventory;
-
+    public ParticleSystem kill;
+    public ParticleSystem Drug;
+    public ParticleSystem Heal;
     // Use this for initialization
     void Start ()
     {
+       
         inventory = GetComponent<Backpack>();
 	}
     private void AttemptInteraction()

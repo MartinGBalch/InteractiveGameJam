@@ -20,7 +20,7 @@ public class Herb : MonoBehaviour, IInteractable {
         var t = (PlayerInteracter)caller;
         if (!t.inventory.isFull())
         {
-            
+            t.Heal.Play();
             t.inventory.PlaceItem(2, 1);
             spawn.currentHerbsInGame--;
             t.inventory.UpdateImages();

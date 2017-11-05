@@ -15,6 +15,7 @@ public class CritterWander : MonoBehaviour, IInteractable {
     NavMeshAgent agent;
     public Vector2 Destination;
     SpriteRenderer sprite;
+    public ParticleSystem[] part;
     
     public GameObject Predator;
     public int state;
@@ -32,6 +33,7 @@ public class CritterWander : MonoBehaviour, IInteractable {
                 t.inventory.PlaceItem(0, 1);
                 spawn.currentCrittersInGame--;
                 t.inventory.UpdateImages();
+                t.kill.Play();
                 gameObject.SetActive(false);
             }
            
@@ -43,8 +45,15 @@ public class CritterWander : MonoBehaviour, IInteractable {
         return true;
     }
 
+    void PlayerHeart()
+    {
+        part[0].Play();
+    }
+
     public void Wander()
     {
+        part[0].gameObject.transform.position = transform.position;
+        Invoke("PlayerHeart", 1);
         Predator = null;
         Destination = Random.insideUnitCircle.normalized * radius;
         Destination = Destination + Random.insideUnitCircle * jitter;
@@ -58,6 +67,8 @@ public class CritterWander : MonoBehaviour, IInteractable {
     {
         if(Predator != null)
         {
+            if(!part[1].isPlaying)
+                part[1].Play();
             Vector3 target = Predator.transform.position + Predator.GetComponent<Rigidbody>().velocity;
             Vector3 dir = -(target - transform.position).normalized;
             Vector3 desiredVelocity = dir * speed;
@@ -98,6 +109,7 @@ public class CritterWander : MonoBehaviour, IInteractable {
 	// Use this for initialization
 	void Start ()
     {
+        part = GetComponentsInChildren<ParticleSystem>();
         state = 0;
         sprite = GetComponent<SpriteRenderer>();
         agent = GetComponent<NavMeshAgent>();
