@@ -11,21 +11,22 @@ public class CritterSpawner : MonoBehaviour {
     public GameObject critter;
     public float SpawnInterval;
     private float currentInterval;
-
+    public Transform[] spawnPoints;
 
     // Use this for initialization
-    void Start () {
+    void Awake () {
         critter.GetComponent<CritterWander>().spawn = this;
         critterPool = new List<GameObject>();
         currentInterval = SpawnInterval;
         currentCrittersInGame = 0;
-        for(int i =0; i <maxCrittersInGame; i++)
+        for(int i =0; i < maxCrittersInGame; i++)
         {
             var babe = Instantiate(critter);
+            babe.transform.position = transform.position;
             babe.SetActive(false);
             critterPool.Add(babe);
         }
-		
+        int x = 2;
 	}
 	
     void SpawnCritter()
@@ -35,7 +36,8 @@ public class CritterSpawner : MonoBehaviour {
             if (!critterPool[i].activeInHierarchy)
             {
                 critterPool[i].SetActive(true);
-                critterPool[i].transform.position = transform.position;
+                int idx = Random.Range(0, spawnPoints.Length - 1);
+                critterPool[i].transform.position = spawnPoints[idx].position;
                 currentCrittersInGame++;
                 break;
             }

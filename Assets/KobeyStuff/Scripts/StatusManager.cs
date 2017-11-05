@@ -21,6 +21,9 @@ public class StatusManager : MonoBehaviour {
     public float currentInsanity;
     public float currentHunger;
 
+    public float desiredHealth;
+    public float desiredInsanity;
+    public float desiredHunger;
 
     public int spriteState;
     public bool stateSwith1;
@@ -30,13 +33,16 @@ public class StatusManager : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        Props = FindObjectsOfType<SpriteHandler>();
+       
         currentHealth = maxHealth;
         currentHunger = maxHunger;
         currentInsanity = maxInsanity;
 	}
 
-   
+   void Lose()
+    {
+        Debug.Log("YOU LOSE FEGGET");
+    }
 
     void UpdateSprites(int idx)
     {
@@ -50,24 +56,15 @@ public class StatusManager : MonoBehaviour {
     {
        
     }
+    float timer = .5f;
 	
 	// Update is called once per frame
 	void Update ()
     {
-        if(currentInsanity < 30)
-        {
-            UpdateSprites(2);
-        }
-        else if(currentInsanity < 65)
-        {
-           
-            UpdateSprites(1);
-        }
-        else
-        {
-            UpdateSprites(0);
-        }        
+        // Props = FindObjectsOfType<SpriteHandler>();
 
+        timer -= Time.deltaTime;
+        
 
         currentHunger -= hungerDrain * Time.deltaTime;
 
@@ -75,11 +72,23 @@ public class StatusManager : MonoBehaviour {
         currentInsanity = Mathf.Clamp(currentInsanity, 0, maxInsanity);
         currentHunger = Mathf.Clamp(currentHunger, 0, maxHunger);
 
-        health.fillAmount = currentHealth / maxHealth;
-        instanity.fillAmount = currentInsanity / maxInsanity;
-        hunger.fillAmount = currentHunger / maxHunger;
 
-        
+
+        if (timer < 0)
+        {
+            hunger.fillAmount = currentHunger / maxHunger;
+            health.fillAmount = currentHealth / maxHealth;
+            instanity.fillAmount = currentInsanity / maxInsanity;
+            timer = 0.5f;
+        }
+
+        if (currentHealth <= 0 || currentInsanity <= 0 || currentHunger <= 0)
+        {
+            hunger.fillAmount = currentHunger / maxHunger;
+            health.fillAmount = currentHealth / maxHealth;
+            instanity.fillAmount = currentInsanity / maxInsanity;
+            Lose();
+        }
 
     }
 }

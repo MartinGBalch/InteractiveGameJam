@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TrippyHerb : MonoBehaviour, IInteractable
 {
-
+    public HerbSpawn spawn;
     StatusManager manager;
     public float InsanityDrain;
     // Use this for initialization
@@ -15,8 +15,11 @@ public class TrippyHerb : MonoBehaviour, IInteractable
 
     public void Interact(Object caller)
     {
+        var t = (PlayerInteracter)caller;
+        t.Drug.Play();
         manager.currentInsanity -= InsanityDrain;
-        Destroy(gameObject);
+        spawn.currentHerbsInGame--;
+        gameObject.SetActive(false);
       //  manager.currentHealth = Mathf.Clamp(manager.currentHealth, 0, manager.maxHealth);
 
     }
