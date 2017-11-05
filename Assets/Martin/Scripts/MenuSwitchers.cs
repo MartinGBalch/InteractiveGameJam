@@ -37,6 +37,7 @@ public class MenuSwitchers : MonoBehaviour
 
     public void enterPress()
     {
+        Debug.Log("fuaiohfsdajhbafuigq");
         titleScreen.gameObject.SetActive(false);
         mainMenu.gameObject.SetActive(true);
         //fade stuff here if i get time
