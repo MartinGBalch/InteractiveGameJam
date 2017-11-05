@@ -21,8 +21,8 @@ public class DayNightCycle : MonoBehaviour {
         manager = FindObjectOfType<StatusManager>();
         Day = 1;
         dayText.text = "Day " + Day.ToString();
-        Desiredintensity = 1;
-        currentInensity = 1;
+        Desiredintensity = 2.5f;
+        currentInensity = 2.5f;
         timeOfDay = 0;
         currentTime = stateTime;
 	}
@@ -41,7 +41,7 @@ public class DayNightCycle : MonoBehaviour {
             {
                 if(i == 0)
                 {
-                    Desiredintensity = 1;
+                    Desiredintensity = 2.5f;
                 }
                 RenderSettings.skybox = skyBoxes[timeOfDay];
                 if(i == skyBoxes.Length -1)
@@ -63,7 +63,7 @@ public class DayNightCycle : MonoBehaviour {
         currentTime -= Time.deltaTime;
         if(currentTime < 0)
         {
-            Desiredintensity -= .2f;
+            Desiredintensity -= .4f;
             ChangeSkyBox();
         }
         if(timeOfDay > 3)

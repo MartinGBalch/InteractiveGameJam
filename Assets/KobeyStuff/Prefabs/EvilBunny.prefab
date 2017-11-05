@@ -59,7 +59,7 @@ MonoBehaviour:
   pursuitDistance: 5
   pursuitRange: 15
   attackRange: 2
-  damage: 5
+  damage: 10
 --- !u!195 &195131990369788658
 NavMeshAgent:
   m_ObjectHideFlags: 1

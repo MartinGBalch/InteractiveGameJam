@@ -27,7 +27,20 @@ public class CritterWander : MonoBehaviour, IInteractable {
         {
             
             var t = (PlayerInteracter)caller;
-            if(!t.inventory.isFull())
+            int idx = t.inventory.FindmatchingItemSlot(0);
+            if(idx == -1)
+            {
+                if (!t.inventory.isFull())
+                {
+                    t.inventory.manager.currentInsanity -= InsanityDrainOnKill;
+                    t.inventory.PlaceItem(0, 1);
+                    spawn.currentCrittersInGame--;
+                    t.inventory.UpdateImages();
+                    t.kill.Play();
+                    gameObject.SetActive(false);
+                }
+            }
+            else
             {
                 t.inventory.manager.currentInsanity -= InsanityDrainOnKill;
                 t.inventory.PlaceItem(0, 1);
@@ -36,6 +49,7 @@ public class CritterWander : MonoBehaviour, IInteractable {
                 t.kill.Play();
                 gameObject.SetActive(false);
             }
+           
            
         }
     }
