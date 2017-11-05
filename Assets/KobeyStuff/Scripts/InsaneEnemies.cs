@@ -8,6 +8,8 @@ public class InsaneEnemies : MonoBehaviour {
     public GameObject target;
     NavMeshAgent agent;
     StatusManager manager;
+    public float maxSpeed;
+    public float currentSpeed;
     public float pursuitDistance;
     public float pursuitRange;
     public float attackRange;
@@ -38,6 +40,12 @@ public class InsaneEnemies : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if(manager.currentInsanity > 0)
+        {
+            currentSpeed = (manager.maxInsanity / manager.currentInsanity);
+        }
+        
+        agent.speed = currentSpeed;
         agent.destination = target.transform.position + target.GetComponent<Rigidbody>().velocity * pursuitDistance;
         if(Vector3.Distance(transform.position,agent.destination) < pursuitRange)
         {
