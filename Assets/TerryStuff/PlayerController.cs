@@ -100,6 +100,9 @@ public class PlayerController : MonoBehaviour
 
             transform.position = position; 
         }
+
+        var thing = GetComponent<Animator>();
+        thing.SetFloat("Speed", targetVelocity.magnitude);
     }
 
   
